@@ -1,0 +1,1 @@
+{"lowercase": true, "token_pattern": "(?u)\\b\\w\\w+\\b", "ngram_range": [3, 5], "norm": "l2", "sublinear_tf": false, "stop_words": null}
