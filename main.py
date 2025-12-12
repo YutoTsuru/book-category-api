@@ -15,3 +15,7 @@ def predict(item: Item):
     pred_id = model.predict([item.text])[0]
     genre = label_encoder.inverse_transform([pred_id])[0]
     return {"genre": genre}
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
