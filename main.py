@@ -4,8 +4,8 @@ import joblib
 
 app = FastAPI()
 
-model = joblib.load("genre_pipeline.joblib")
-label_encoder = joblib.load("label_encoder.joblib")
+model = joblib.load("models/genre_pipeline.joblib")
+label_encoder = joblib.load("models/label_encoder.joblib")
 
 class Item(BaseModel):
     text: str
