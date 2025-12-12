@@ -4,17 +4,17 @@ import joblib
 
 app = FastAPI()
 
-model = joblib.load("models/genre_pipeline.joblib")
-label_encoder = joblib.load("models/label_encoder.joblib")
+vectorizer = joblib.load("models/vectorizer.joblib")
+kmeans = joblib.load("models/kmeans.pkl")
 
 class Item(BaseModel):
     text: str
 
 @app.post("/predict")
 def predict(item: Item):
-    pred_id = model.predict([item.text])[0]
-    genre = label_encoder.inverse_transform([pred_id])[0]
-    return {"genre": genre}
+    X = vectorizer.transform([item.text])
+    cluster = int(kmeans.predict(X)[0])
+    return {"prediction": cluster}
 
 @app.get("/health")
 def health():
